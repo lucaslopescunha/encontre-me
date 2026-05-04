@@ -18,15 +18,11 @@ public interface LogMapper {
     @Mapping(target = "responseBody", source = "responseBody")
     LogSearchResponse toResponse(LogSearch log);
 
-    // --- Conversores de Data ---
 
     default OffsetDateTime mapInstantToOffset(Instant instant) {
         return instant != null ? instant.atOffset(ZoneOffset.UTC) : null;
     }
 
-    default Instant mapOffsetToInstant(OffsetDateTime offsetDateTime) {
-        return offsetDateTime != null ? offsetDateTime.toInstant() : null;
-    }
 
     default LogSearchResponse toResponse(LogSearch log, String cep) {
         if (log == null) return null;
