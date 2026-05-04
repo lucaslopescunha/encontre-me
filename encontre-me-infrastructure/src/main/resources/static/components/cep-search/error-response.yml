@@ -1,0 +1,20 @@
+title: ErrorResponse
+type: object
+properties:
+  status:
+    type: integer
+    example: 429
+    description: Código de status HTTP.
+  message:
+    type: string
+    example: Too Many Requests
+    description: Mensagem dinâmica retornada conforme o tipo de erro.
+  path:
+    type: string
+    example: /api/v1/cep/01001000
+    description: URI da requisição.
+  timestamp:
+    type: string
+    format: date-time
+    example: "2026-05-20T14:32:00Z"
+    description: Data e hora em que o erro ocorreu (padrão ISO 8601).

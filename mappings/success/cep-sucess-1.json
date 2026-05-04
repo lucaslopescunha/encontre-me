@@ -1,0 +1,25 @@
+{
+  "priority": 1,
+  "request": {
+    "method": "GET",
+    "urlPattern": "/api/v1/consulta/cep/01248070"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "cep": "01248070",
+      "tipoCep": "rua",
+      "subTipoCep": "899",
+      "uf": "SP",
+      "cidade": "São Paulo",
+      "bairro": "Pacaembu",
+      "endereco": "Itacaranha",
+      "complemento": "Até número 200",
+      "codigoIbge": "445"
+    }
+  }
+}
+

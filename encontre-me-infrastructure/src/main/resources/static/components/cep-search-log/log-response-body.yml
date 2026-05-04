@@ -1,0 +1,46 @@
+title: LogResponseBody
+type: object
+nullable: true
+description: Corpo da resposta retornada pela consulta de CEP.
+properties:
+  cep:
+    type: string
+    example: "02543010"
+    description: CEP retornado pela consulta.
+  tipoCep:
+    type: string
+    example: "logradouro"
+    description: Tipo do CEP retornado.
+  subTipo:
+    type: string
+    example: "S"
+    description: Subtipo do CEP retornado.
+  subTipoCep:
+    type: string
+    example: "S"
+    description: Subtipo do CEP retornado.
+  uf:
+    type: string
+    example: "SP"
+    description: Sigla da unidade federativa.
+  cidade:
+    type: string
+    example: "São Paulo"
+    description: Nome da cidade.
+  bairro:
+    type: string
+    example: "Imirim"
+    description: Nome do bairro.
+  endereco:
+    type: string
+    example: "Av. Lasar Segall"
+    description: Nome do endereço.
+  complemento:
+    type: string
+    example: "até número 170"
+    description: Complemento do endereço.
+  codigoIbge:
+    type: string
+    example: "0112"
+    description: Código IBGE.
+additionalProperties: true

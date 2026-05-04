@@ -1,0 +1,90 @@
+get:
+  summary: Consultar logs de pesquisa de CEP
+  description: Retorna os logs paginados das consultas de CEP realizadas.
+  operationId: searchLogs
+  tags:
+    - Logs
+  security:
+    - ApiKeyAuth: []
+  parameters:
+    - name: page
+      in: query
+      description: Número da página.
+      required: false
+      schema:
+        type: integer
+        default: 0
+        minimum: 0
+    - name: size
+      in: query
+      description: Quantidade de itens por página.
+      required: false
+      schema:
+        type: integer
+        default: 10
+        minimum: 1
+    - name: cep
+      in: query
+      description: CEP utilizado para filtrar os logs.
+      required: false
+      example: '01001000'
+      schema:
+        type: string
+
+    - name: startDate
+      in: query
+      description: Data e hora inicial para filtrar os logs.
+      required: false
+      example: '2026-05-01T00:00:00Z'
+      schema:
+        type: string
+        format: date-time
+        example: '2026-05-01T00:00:00Z'
+
+    - name: endDate
+      in: query
+      description: Data e hora final para filtrar os logs.
+      required: false
+      example: '2026-05-03T23:59:59Z'
+      schema:
+        type: string
+        format: date-time
+        example: '2026-05-01T00:00:00Z'
+
+  responses:
+    '200':
+      description: Logs encontrados com sucesso.
+      content:
+        application/json:
+          schema:
+            $ref: '../cepapi.yml#/components/schemas/LogSearchPageResponse'
+    '400':
+      description: Parâmetros de consulta inválidos.
+      content:
+        application/json:
+          schema:
+            $ref: '../cepapi.yml#/components/schemas/ErrorResponse'
+    '429':
+      description: Muitas requisições.
+      content:
+        application/json:
+          schema:
+            $ref: '../cepapi.yml#/components/schemas/ErrorResponse'
+
+delete:
+  summary: Remover todos os logs de pesquisa sem parâmetros
+  description: Remove todos os logs das consultas de CEP realizadas.
+  operationId: deleteAllLogs
+  security:
+    - ApiKeyAuth: []
+  tags:
+    - Logs
+  responses:
+    '204':
+      description: Logs removidos com sucesso.
+    '429':
+      description: Muitas requisições.
+      content:
+        application/json:
+          schema:
+            $ref: '../cepapi.yml#/components/schemas/ErrorResponse'

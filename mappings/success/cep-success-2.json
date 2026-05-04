@@ -1,0 +1,24 @@
+{
+  "priority": 2,
+  "request": {
+    "method": "GET",
+    "urlPattern": "/api/v1/consulta/cep/02543010"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "cep": "02543010",
+      "tipoCep": "logradouro",
+      "subTipoCep": "899",
+      "endereco": "Lasar Segall",
+      "bairro": "Imirim",
+      "cidade": "São Paulo",
+      "uf": "SP",
+      "complemento": "até número 170",
+      "codigoIbge": "5555"
+    }
+  }
+}

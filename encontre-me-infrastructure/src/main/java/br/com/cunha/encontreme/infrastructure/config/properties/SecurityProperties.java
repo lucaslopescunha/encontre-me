@@ -1,0 +1,10 @@
+package br.com.cunha.encontreme.infrastructure.config.properties;
+
+import org.springframework.boot.context.properties.ConfigurationProperties;
+
+@ConfigurationProperties(prefix = "app.security")
+public record SecurityProperties(
+        String apiKey,
+        String apiHeader
+) {
+}

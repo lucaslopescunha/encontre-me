@@ -1,0 +1,37 @@
+title: AddressResponse
+type: object
+properties:
+  cep:
+    type: string
+    example: "000"
+    description: Cep do endereço(O mesmo utilizado na busca).
+  tipoCep:
+    type: string
+    example: logradouro, localidade, cx_postal, gr_usuario, uni_operacional
+    description: Tipo do CEP.
+  subTipoCep:
+    type: string
+    example: S
+  uf:
+    type: string
+    example: BA
+    description: Sigla da UF.
+  cidade:
+    type: string
+    example: Salvador
+    description: Nome da cidade.
+  bairro:
+    type: string
+    example: Centro
+    description: Nome do bairro.
+  endereco:
+    type: string
+    example: Av. Paulista, 1000
+  complemento:
+    type: string
+    example: Até 801 - lado ímpar
+    description: Complemento
+  codigoIbge:
+    type: string
+    example: 2802308
+    description: Cod do ibge.

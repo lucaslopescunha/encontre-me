@@ -1,0 +1,30 @@
+openapi: 3.0.0
+info:
+  title: Encontre-me API
+  version: 1.0.0
+
+paths:
+  /api/v1/cep/{cep}:
+    $ref: './apis/find-address-by-cep.yml'
+  /api/v1/logs:
+    $ref: './apis/search-and-delete-logs.yml'
+  /api/v1/logs/{cep}:
+    $ref: './apis/delete-logs-by-cep.yml'
+
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-KEY
+  schemas:
+    AddressResponse:
+      $ref: './components/cep-search/address-response.yml'
+    ErrorResponse:
+      $ref: './components/cep-search/error-response.yml'
+    LogSearchResponse:
+      $ref: './components/cep-search-log/log-search-response.yml'
+    LogSearchPageResponse:
+      $ref: './components/cep-search-log/log-search-page-response.yml'
+    LogResponseBody:
+      $ref: './components/cep-search-log/log-response-body.yml'

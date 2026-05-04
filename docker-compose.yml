@@ -1,0 +1,106 @@
+services:
+  postgres:
+    image: postgres:13.2-alpine
+    container_name: cep-address
+    environment:
+      POSTGRES_DB: cep-address
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    networks:
+      - cep-network
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: cep-pgadmin
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "5050:80"
+    networks:
+      - cep-network
+    depends_on:
+      postgres:
+        condition: service_healthy
+  wiremock:
+    image: wiremock/wiremock:3.13.2-2-alpine
+    container_name: cep-wiremock
+    ports:
+      - "8089:8080"
+    volumes:
+      - ./__files:/home/wiremock/__files
+      - ./mappings:/home/wiremock/mappings
+    entrypoint: [ "/docker-entrypoint.sh", "--global-response-templating", "--disable-gzip", "--verbose" ]
+    networks:
+      - cep-network
+#  mongodb:
+#    image: mongo:7
+#    container_name: mongodb
+#    restart: always
+#    environment:
+#      MONGO_INITDB_ROOT_USERNAME: admin
+#      MONGO_INITDB_ROOT_PASSWORD: admin
+#      MONGO_INITDB_DATABASE: cep_logs
+#    ports:
+#      - "27017:27017"
+#    volumes:
+#      - mongo_data:/data/db
+#    networks:
+#      - cep-network
+#    healthcheck:
+#      test: [
+#        "CMD",
+#        "mongosh",
+#        "--username", "admin",
+#        "--password", "admin",
+#        "--authenticationDatabase", "admin",
+#        "--eval", "db.adminCommand('ping')"
+#      ]
+#      interval: 1m
+#      timeout: 5s
+#      retries: 5
+#      start_period: 20s
+#  mongo-express:
+#    image: mongo-express:latest
+#    container_name: mongo-express
+#    restart: always
+#    depends_on:
+#      mongodb:
+#        condition: service_healthy
+#    environment:
+#      ME_CONFIG_MONGODB_ADMINUSERNAME: admin
+#      ME_CONFIG_MONGODB_ADMINPASSWORD: admin
+#      ME_CONFIG_MONGODB_SERVER: mongodb # Nome do serviço do seu banco local no Docker
+#      ME_CONFIG_BASICAUTH_USERNAME: admin
+#      ME_CONFIG_BASICAUTH_PASSWORD: admin
+#    ports:
+#      - "8084:8081"
+#    networks:
+#      - cep-network
+#    healthcheck:
+#      test: [ "CMD-SHELL", "node -e \"const http = require('http'); http.get('http://localhost:8081', (res) => { if (res.statusCode === 200) process.exit(0); else process.exit(1); }).on('error', () => process.exit(1));\"" ]
+#
+#      interval: 15s
+#      timeout: 5s
+#      retries: 5
+#      start_period: 15s
+#
+#
+
+
+
+volumes:
+  postgres_data:
+networks:
+  cep-network:
+    driver: bridge

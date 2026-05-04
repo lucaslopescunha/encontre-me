@@ -1,0 +1,56 @@
+spring:
+  application:
+    name: encontre-me
+  datasource:
+    url: jdbc:postgresql://localhost:5432/cep-address
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: none
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+  cloud:
+    openfeign:
+      client:
+        config:
+          cep-client:
+            url: ${app.external-services.cep.url}
+            connectTimeout: 1000
+            readTimeout: 2000
+server:
+  port: 8080
+
+app:
+  security:
+    api-header: X-API-KEY
+    api-key: minha-chave-lucas-lopes-cunha
+  external-services:
+    cep:
+      url: http://localhost:8089/
+      uri-search: /api/v1/consulta/cep/{cep}
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      probes:
+        enabled: true
+
+resilience4j:
+  ratelimiter:
+    instances:
+      cepConsultas:
+        limitForPeriod: 3
+        limitRefreshPeriod: 10s
+        timeoutDuration: 0s
+      logsConsultas:
+        limitForPeriod: 3
+        limitRefreshPeriod: 10
+        timeoutDuration: 0s

@@ -1,0 +1,40 @@
+get:
+  summary: Buscar endereço pelo CEP
+  description: Retorna as informações do endereço para o CEP informado.
+  operationId: findAddressByCep
+  tags:
+    - Address
+  security: []
+  parameters:
+    - name: cep
+      in: path
+      description: CEP utilizado para buscar o endereço.
+      required: true
+      schema:
+        type: string
+        example: '01001000'
+  responses:
+    '200':
+      description: Endereço encontrado com sucesso.
+      content:
+        application/json:
+          schema:
+            $ref: '../cepapi.yml#/components/schemas/AddressResponse'
+    '400':
+      description: CEP inválido.
+      content:
+        application/json:
+          schema:
+            $ref: '../cepapi.yml#/components/schemas/ErrorResponse'
+    '404':
+      description: Endereço não encontrado.
+      content:
+        application/json:
+          schema:
+            $ref: '../cepapi.yml#/components/schemas/ErrorResponse'
+    '429':
+      description: Muitas requisições.
+      content:
+        application/json:
+          schema:
+            $ref: '../cepapi.yml#/components/schemas/ErrorResponse'

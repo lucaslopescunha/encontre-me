@@ -1,0 +1,25 @@
+{
+  "priority": 3,
+  "request": {
+    "method": "GET",
+    "urlPattern": "/api/v1/consulta/cep/30455740"
+  },
+  "response": {
+    "status": 200,
+    "fixedDelayMilliseconds": 5000,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "cep": "30455740",
+      "tipoCep": "logradouro",
+      "subTipoCep": "S",
+      "uf": "SP",
+      "cidade": "São Paulo",
+      "bairro": "Imirim",
+      "endereco": "Av. Lasar Segall",
+      "complemento": "",
+      "codigoIBGE": ""
+    }
+  }
+}

@@ -1,0 +1,18 @@
+title: LogSearchResponse
+type: object
+properties:
+  cep:
+    type: string
+    example: "01248070"
+    description: CEP pesquisado.
+  searchDate:
+    type: string
+    format: date-time
+    example: "2026-04-29T10:15:30"
+    description: Data e hora da pesquisa.
+  status:
+    type: string
+    example: SUCCESS
+    description: Status da consulta.
+  responseBody:
+    $ref: '../../cepapi.yml#/components/schemas/LogResponseBody'

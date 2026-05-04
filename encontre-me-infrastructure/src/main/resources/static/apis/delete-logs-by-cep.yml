@@ -1,0 +1,31 @@
+delete:
+  summary: Remover logs de pesquisa por Id do Log
+  description: Remove os logs das consultas realizadas para o CEP informado.
+  operationId: deleteLogsByCep
+  tags:
+    - Logs
+  security:
+    - ApiKeyAuth: []
+  parameters:
+    - name: id
+      in: path
+      description: CEP utilizado para remover os logs.
+      required: true
+      schema:
+        type: string
+        example: '01001000'
+  responses:
+    '204':
+      description: Logs removidos com sucesso.
+    '400':
+      description: CEP inválido.
+      content:
+        application/json:
+          schema:
+            $ref: '../cepapi.yml#/components/schemas/ErrorResponse'
+    '429':
+      description: Limite de requisições atingido.
+      content:
+        application/json:
+          schema:
+            $ref: '../cepapi.yml#/components/schemas/ErrorResponse'

@@ -1,0 +1,17 @@
+{
+  "priority": 10,
+  "request": {
+    "method": "GET",
+    "urlPattern": "/api/v1/consulta/cep/[0-9]+"
+  },
+  "response": {
+    "status": 404,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "erro": "CEP não encontrado ou inválido",
+      "codigo": "CEP_NOT_FOUND"
+    }
+  }
+}
