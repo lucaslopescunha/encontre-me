@@ -11,10 +11,6 @@ properties:
     type: string
     example: "logradouro"
     description: Tipo do CEP retornado.
-  subTipo:
-    type: string
-    example: "S"
-    description: Subtipo do CEP retornado.
   subTipoCep:
     type: string
     example: "S"

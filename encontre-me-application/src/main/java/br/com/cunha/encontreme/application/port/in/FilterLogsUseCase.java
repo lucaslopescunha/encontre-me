@@ -10,8 +10,8 @@ import java.time.OffsetDateTime;
 public interface FilterLogsUseCase {
     PageResult<LogSearch> filter(Integer page,
                                  Integer size,
-                                 Instant startDate,
-                                 Instant endDate,
+                                 OffsetDateTime startDate,
+                                 OffsetDateTime endDate,
                                  String cep);
 
 }

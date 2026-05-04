@@ -32,13 +32,13 @@ public class FilterLogsServiceTest {
     @InjectMocks
     private FilterLogsService service;
 
-    private Instant startDate;
-    private Instant endDate;
+    private OffsetDateTime startDate;
+    private OffsetDateTime endDate;
 
     @BeforeEach
     void setUp() {
-        startDate = Instant.parse("2026-01-01T00:00:00Z");
-        endDate = Instant.parse("2026-01-02T23:59:00Z");
+        startDate = Instant.parse("2026-01-01T00:00:00Z").atOffset(ZoneOffset.UTC);
+        endDate = Instant.parse("2026-01-02T23:59:00Z").atOffset(ZoneOffset.UTC);
     }
 
     @Test

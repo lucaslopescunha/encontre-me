@@ -1,6 +1,7 @@
 package br.com.cunha.encontreme.infrastructure.adapter.out.client;
 
 import br.com.cunha.encontreme.application.port.out.FindAddressByCepPort;
+import br.com.cunha.encontreme.domain.annotation.Auditable;
 import br.com.cunha.encontreme.domain.model.Address;
 import br.com.cunha.encontreme.infrastructure.adapter.out.mapper.AddressClientMapper;
 import br.com.cunha.encontreme.infrastructure.client.feign.CepFeignClient;
@@ -16,6 +17,7 @@ public class CepClientAdapter implements FindAddressByCepPort {
     private final CepFeignClient cepFeignClient;
     private final AddressClientMapper mapper;
 
+    @Auditable
     @Override
     public Address findByCep(String cep) {
         log.debug("[CEP_SEARCH_START] cep={}", cep);

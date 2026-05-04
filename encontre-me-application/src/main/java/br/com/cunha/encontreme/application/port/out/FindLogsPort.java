@@ -10,7 +10,7 @@ import java.time.OffsetDateTime;
 public interface FindLogsPort {
     PageResult<LogSearch> filter(Integer page,
                                  Integer size,
-                                 Instant startDate,
-                                 Instant endDate, String cep);
+                                 OffsetDateTime startDate,
+                                 OffsetDateTime endDate, String cep);
 
 }

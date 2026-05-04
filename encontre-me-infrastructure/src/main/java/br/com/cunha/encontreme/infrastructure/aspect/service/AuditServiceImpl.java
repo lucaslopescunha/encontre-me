@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.Clock;
 import java.time.Instant;
+import java.time.OffsetDateTime;
 
 @Service
 @RequiredArgsConstructor
@@ -28,7 +29,7 @@ public class AuditServiceImpl implements AuditService {
                                   Status status,
                                   Address result) {
         var entity = LogJpaEntity.builder()
-                .searchDate(Instant.now(clock))
+                .searchDate(OffsetDateTime.now(clock))
                 .cep(cep)
                 .responseStatus(status)
                 .responseBody(mapper.toEntity(result))

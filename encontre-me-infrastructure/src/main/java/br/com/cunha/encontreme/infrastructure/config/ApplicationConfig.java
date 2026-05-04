@@ -14,6 +14,7 @@ import br.com.cunha.encontreme.infrastructure.config.properties.SecurityProperti
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 
 import java.time.Clock;
 import java.time.ZoneId;
@@ -41,4 +42,5 @@ public class ApplicationConfig {
     public Clock clock() {
         return Clock.system(ZoneId.of("America/Sao_Paulo"));
     }
+
 }

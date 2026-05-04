@@ -1,5 +1,6 @@
 package br.com.cunha.encontreme.infrastructure.adapter.out.client.decoder;
 
+import br.com.cunha.encontreme.application.exception.CepServiceInternalServerError;
 import br.com.cunha.encontreme.domain.exception.CepNotFoundException;
 import br.com.cunha.encontreme.application.exception.CepServiceTimeoutException;
 import br.com.cunha.encontreme.application.exception.CepServiceUnavailableException;
@@ -18,12 +19,16 @@ public class CustomErrorDecoder implements ErrorDecoder {
             return new CepNotFoundException("CEP não encontrado");
         }
 
-        if (status == 408 || status == 504) {
+        if (status == 408) {
             return new CepServiceTimeoutException("Timeout no serviço de CEP");
         }
 
-        if (status >= 500) {
-            return new CepServiceUnavailableException("Serviço de CEP indisponível");
+        if (status == 500) {
+            return new CepServiceInternalServerError("Erro interno do servidor");
+        }
+
+        if (status == 503) {
+            return new CepServiceUnavailableException("Serviço Indisponível");
         }
 
         return defaultDecoder.decode(methodKey, response);

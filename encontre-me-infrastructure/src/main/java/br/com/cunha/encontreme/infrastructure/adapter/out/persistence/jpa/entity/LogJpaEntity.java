@@ -27,7 +27,7 @@ public class LogJpaEntity {
     private Long id;
 
     @Column(name = "search_date", nullable = false)
-    private Instant searchDate;
+    private OffsetDateTime searchDate;
 
     @Column(name = "cep", nullable = false)
     private String cep;

@@ -16,6 +16,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 
 import java.time.Instant;
+import java.time.OffsetDateTime;
 
 @Component
 @RequiredArgsConstructor
@@ -26,8 +27,8 @@ public class LogsAdapter implements FindLogsPort, DeleteLogsPort {
 
     @Override
     public PageResult<LogSearch> filter(Integer page,Integer size,
-                                        Instant startDate,
-                                        Instant endDate,  String cep) {
+                                        OffsetDateTime startDate,
+                                        OffsetDateTime endDate,  String cep) {
         var pageable = createPageable(page,
                 size);
         var logs = findLogs(cep, startDate, endDate, pageable);
@@ -54,8 +55,8 @@ public class LogsAdapter implements FindLogsPort, DeleteLogsPort {
     }
 
     private Page<LogJpaEntity> findLogs(String cep,
-                                        Instant startDate,
-                                        Instant endDate,
+                                        OffsetDateTime startDate,
+                                        OffsetDateTime endDate,
                                         Pageable pageable) {
         if (StringUtils.isNotBlank(cep)) {
             return repository.findByCepAndSearchDateInterval(

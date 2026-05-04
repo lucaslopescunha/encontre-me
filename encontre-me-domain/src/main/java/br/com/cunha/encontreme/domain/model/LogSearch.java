@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 
 public record LogSearch(Long id,
-                        Instant searchDate,
+                        OffsetDateTime searchDate,
                         String cep,
                         Status status,
                         Address responseBody) {

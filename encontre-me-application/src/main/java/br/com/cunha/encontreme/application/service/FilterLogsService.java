@@ -24,8 +24,8 @@ public class FilterLogsService implements FilterLogsUseCase {
     @Override
     public PageResult<LogSearch> filter(Integer page,
                                         Integer size,
-                                        Instant startDate,
-                                        Instant endDate,
+                                        OffsetDateTime startDate,
+                                        OffsetDateTime endDate,
                                         String cep) {
 
         DateIntervalValidator.validate(startDate, endDate);

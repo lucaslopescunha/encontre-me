@@ -10,7 +10,7 @@ public final class DateIntervalValidator {
     private DateIntervalValidator() {
     }
 
-    public static void validate(Instant startDate, Instant endDate) {
+    public static void validate(OffsetDateTime startDate, OffsetDateTime endDate) {
         if (endDate != null && startDate == null) {
             throw new DateIntervalException("O parâmetro 'startDate' é obrigatório quando 'endDate' for informado.");
         }

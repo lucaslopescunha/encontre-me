@@ -18,6 +18,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 
 import java.time.Instant;
+import java.time.OffsetDateTime;
+import java.time.ZoneOffset;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -36,8 +38,8 @@ public class LogsAdapterTest {
     private LogsAdapter logsAdapter;
 
     private static final String CEP = "00000000";
-    private static final Instant START_DATE = Instant.parse("2025-01-01T00:00:00Z");
-    private static final Instant END_DATE = Instant.parse("2035-12-31T23:59:59Z");
+    private static final OffsetDateTime START_DATE = Instant.parse("2025-01-01T00:00:00Z").atOffset(ZoneOffset.UTC);
+    private static final OffsetDateTime END_DATE = Instant.parse("2035-12-31T23:59:59Z").atOffset(ZoneOffset.UTC);
 
     @Test
     void shouldFilterLogsByCepAndInterval() {

@@ -47,14 +47,12 @@ public class LogsController implements LogsApi {
                                                             @Nullable String cep,
                                                             @Nullable OffsetDateTime startDate,
                                                             @Nullable OffsetDateTime endDate) throws Exception {
-        Instant startInstant = (startDate != null) ? startDate.toInstant() : null;
-        Instant endInstant = (endDate != null) ? endDate.toInstant() : null;
 
         var logs = filterLogsUseCase.filter(
                 page,
                 size,
-                startInstant,
-                endInstant,
+                startDate,
+                endDate,
                 cep);
         var response = mapper.toPageResponse(logs, cep);
         return ResponseEntity.ok(response);

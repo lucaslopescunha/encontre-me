@@ -15,6 +15,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 public interface CepFeignClient {
 
     @GetMapping("/api/v1/consulta/cep/{cep}")
-    AddressClientResponse findCep(@PathVariable("cep") String cep);
+    AddressClientResponse findCep(@PathVariable String cep);
 
 }
